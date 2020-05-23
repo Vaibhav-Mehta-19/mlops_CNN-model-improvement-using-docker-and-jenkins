@@ -1,6 +1,6 @@
 import os
 import pickle
-os.system('sudo docker cp ml:/tf/result .')
+os.system('sudo docker cp ml:/data/result .')
 
 
 maxAccuracy = -1
@@ -15,8 +15,8 @@ with open('result','r') as f:
 
 if accuracy > maxAccuracy:
 	maxAccuracy = accuracy
-	os.system('sudo docker cp ml:/tf/history .')
-	os.system('sudo docker cp ml:/tf/classifier.h5 .')
+	os.system('sudo docker cp ml:/data/history .')
+	os.system('sudo docker cp ml:/data/classifier.h5 .')
 
 
 modelStructure = []
@@ -28,10 +28,10 @@ while(accuracy < 0.8 and var < 7):
 	if accuracy > maxAccuracy:
 
 		maxAccuracy = accuracy
-		os.system('sudo docker cp ml:/tf/history .')
-		os.system('sudo docker cp ml:/tf/classifier.h5 .')
+		os.system('sudo docker cp ml:/data/history .')
+		os.system('sudo docker cp ml:/data/classifier.h5 .')
 
-	os.system('sudo docker cp ml:/tf/result .')
+	os.system('sudo docker cp ml:/data/result .')
 	
 	with open('result','r') as f:
 		accuracy = float(f.read())
@@ -86,7 +86,7 @@ while(accuracy < 0.8 and var < 7):
 		pickle.dump(modelStructure,f)
 
 	os.system("python3 make_model.py")
-	os.system('sudo docker exec ml python3 /tf/ml_model.py')
+	os.system('sudo docker exec ml python3 /data/ml_model.py')
 
 print('max accuracy is ',maxAccuracy)
 

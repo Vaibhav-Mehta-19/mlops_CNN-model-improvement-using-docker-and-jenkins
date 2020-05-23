@@ -3,7 +3,7 @@ modelStructure = {}
 code = []
 
 
-with open('model.data','rb') as f:
+with open('m.data','rb') as f:
 	modelStructure = pickle.load(f)
 
 for i in modelStructure:
@@ -59,7 +59,7 @@ validation_generator = validation_datagen.flow_from_directory(
 variables = "lr = " + str(lr) + '\nep = ' + str(ep) + '\nol = train_generator.num_classes'
 
 model = """	
-model = MoileNet(weights='imagenet',include_top = False,input_shape = (img_rows, img_cols, 3))
+model = MobileNet(weights='imagenet',include_top = False,input_shape = (img_rows, img_cols, 3))
 model.save('MobileNet.h5')
 """
 
@@ -124,7 +124,7 @@ with open('result','w') as f:
 """
 
 
-with open('ml_model.py','w') as f:
+with open('codefile.py','w') as f:
 	f.write(importLibs)
 	f.write(getData)
 	f.write(variables)
@@ -139,4 +139,4 @@ with open('ml_model.py','w') as f:
 f.close()
 
 import os
-os.system('cat ml_model.py')
+os.system('cat codefile.py')

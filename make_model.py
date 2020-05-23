@@ -29,8 +29,8 @@ getData = """
 img_rows, img_cols = 224,224
 from keras.preprocessing.image import ImageDataGenerator
 
-train_data_dir = 'faceData/train/'
-validation_data_dir = 'faceData/test/'
+train_data_dir = '/dataset/train/'
+validation_data_dir = '/dataset/test/'
 
 train_datagen = ImageDataGenerator(
       rescale=1./255,
